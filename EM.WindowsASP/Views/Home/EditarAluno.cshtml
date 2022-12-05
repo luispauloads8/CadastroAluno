@@ -1,0 +1,55 @@
+﻿@model EM.Domain.Aluno
+
+@{
+    ViewData["Title"] = "Editando Aluno";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if(TempData["cpfinvalido"] != null)
+{
+    <div class="alert alert-success">@TempData["cpfinvalido"]</div>
+}
+
+<h4>Editar Aluno</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarAluno">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <input type="hidden" asp-for="Matricula" />
+            <div class="form-group col-md-6">
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" readonly="readonly" disabled="disabled" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sexo" class="control-label"></label>
+                <select 
+                    asp-for="Sexo" class="form-control" asp-items="Html.GetEnumSelectList<EnumeradorSexo>()">
+                </select>
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nascimento" class="control-label"></label>
+                <input asp-for="Nascimento" class="form-control" type="date" />
+                <span asp-validation-for="Nascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-secondary">Retornar</a>
+            </div>
+        </form>
+    </div>
+</div>
